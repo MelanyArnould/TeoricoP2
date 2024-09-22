@@ -6,14 +6,15 @@ public class Clase9 {
         //matrizAcumulada(matriz);
         //separadoPor3V2(matriz);
 
-        String oracion = "Hola, que tal? como estas?";
-        String[] palabras1 = {"Hola", "que", "tal", "como", "estas", "casa"};
+        String oracion = "Hola que tal como estas";
+        String[] palabras1 = {"Hola", "tal", "como", "estas", "casa"};
         String[] palabras2 = {"Hola","casa", "que", "tal", "como", "estas", "casa"};
         String[] arrOracion =oracion.split("[ ,?]+");
 
         for (int i=0; i<arrOracion.length; i++) {
             System.out.print(arrOracion[i] + " ");
         }
+        verificarV2(palabras2, oracion);
 
     }
     //Practicamos para el parcial
@@ -40,8 +41,37 @@ public class Clase9 {
         }
     }
 
-    public void verificarV2(String[] palabras, String oracion) {
+    public static void verificarV2(String[] palabras, String oracion) {
+        String[] arrOracion = oracion.split(" ");
+        boolean esta = true;
+        boolean ordenados = true;
+        int index = -1;
 
+        for (int i = 0; i< arrOracion.length && esta; i++){
+            boolean encontre = false;
+            for (int j = 0; j< palabras.length; j++){
+                if (arrOracion[i].equals(palabras[j])) {
+                    encontre = true;
+                    if (index>j) {
+                        ordenados = false;
+                    }
+                    index = j;
+                }
+
+            }
+            if (!encontre) {
+                esta = false;
+            }
+        }
+        String orden = "no esta ordenado";
+        if (esta){
+            if (ordenados){
+                orden = "esta ordenado";
+            }
+            System.out.println("Esta la oracion, "+ orden);
+        } else {
+            System.out.println("No esta la oracion");
+        }
     }
 
 
